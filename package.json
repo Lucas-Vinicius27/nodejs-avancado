@@ -1,0 +1,45 @@
+{
+  "name": "nodejs-avancado",
+  "version": "1.0.0",
+  "description": "API using Clean Architecture and TDD.",
+  "keywords": [
+    "clean architecture",
+    "clean code",
+    "tdd",
+    "ddd",
+    "solid",
+    "desing patterns",
+    "node",
+    "typescript",
+    "jest",
+    "typeorm"
+  ],
+  "author": {
+    "name": "Lucas Vinicius",
+    "email": "lucas_vfsantos@hotmail.com",
+    "url": "https://lucassantos.app/"
+  },
+  "repository": "git@github.com:Lucas-Vinicius27/nodejs-avancado.git",
+  "bugs": {
+    "url": "https://github.com/Lucas-Vinicius27/nodejs-avancado/issues",
+    "email": "lucas_vfsantos@hotmail.com"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ",
+    "build": "rimraf dist && tsc"
+  },
+  "dependencies": {
+    "module-alias": "^2.2.3",
+    "rimraf": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/module-alias": "^2.0.2",
+    "@types/node": "^20.5.1",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
