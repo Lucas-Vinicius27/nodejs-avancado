@@ -1,0 +1,114 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.suggestSelection": "first",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.prettier": true
+    },
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "editor.rulers": [80, 120],
+    "material-icon-theme.activeIconPack": "nest",
+    "material-icon-theme.folders.associations": {
+        "infra": "app",
+        "domain": "class",
+        "modules": "components",
+        "implementations": "core",
+        "dtos": "typescript",
+        "fakes": "mock",
+        "protos": "pipe",
+        "grpc": "pipe",
+        "providers": "include",
+        "subscribers": "messages",
+        "kafka": "scripts",
+        "mappers": "meta",
+        "_shared": "shared",
+        "eslint-config": "tools",
+        "kube": "kubernetes",
+        "entities": "class",
+        "schemas": "class",
+        "typeorm": "database",
+        "repositories": "mappings",
+        "http": "container",
+        "migrations": "tools",
+        "websocket": "pipe",
+        "websockets": "pipe",
+        "useCases": "controller",
+        "unit": "test",
+        "traits": "test",
+        "feature": "test",
+        "dbtest": "database",
+        "storage": "database",
+        "debugbar": "debug",
+        "sessions": "temp",
+        "services": "server",
+        "console": "core",
+        "nginx": "server",
+        "deploy": "azure-pipelines"
+    },
+    "material-icon-theme.files.associations": {
+        "ormconfig.json": "database",
+        "webpack.mix.js": "webpack",
+        "*.wav": "audio",
+        "routes.ts": "routing",
+        "*.graphql.ts": "graphql",
+        "*.graphql.pagination.ts": "graphql",
+        "*.graphql.infinity.ts": "graphql",
+        "tsconfig.json": "tune",
+        "*.proto": "3d",
+        "*.webpack.js": "webpack"
+    },
+    "files.associations": {
+        ".env*": "dotenv",
+        "*.production": "dockerfile",
+        "*.ejs": "html",
+        ".sequelizerc": "javascript",
+        ".stylelintrc": "json",
+        ".prettierrc": "json",
+        "*.tsx": "typescriptreact"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": []
+    },
+    "editor.bracketPairColorization.enabled": true,
+    "dotenv.enableAutocloaking": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "*/vendor/*": true,
+        "*/web/*": true
+    },
+    "editor.guides.bracketPairs": true,
+    "eslint.format.enable": true,
+    "eslint.alwaysShowStatus": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
+    "explorer.compactFolders": false,
+    "editor.renderLineHighlight": "gutter",
+    "workbench.editor.labelFormat": "short",
+    "extensions.ignoreRecommendations": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "breadcrumbs.enabled": true,
+    "editor.parameterHints.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx"
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
+    },
+    "javascript.suggest.autoImports": true,
+    "typescript.suggest.autoImports": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.semanticHighlighting.enabled": false,
+    "terminal.integrated.showExitAlert": false,
+    "typescript.tsserver.log": "verbose"
+}
