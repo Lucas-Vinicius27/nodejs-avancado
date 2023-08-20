@@ -36,7 +36,8 @@
     "test:staged": "yarn run test -- --findRelatedTests",
     "test:coverage": "yarn run test -- --coverage",
     "prepare": "husky install",
-    "preci": "rm -rf node_modules"
+    "preci": "rm -rf node_modules",
+    "ci": "yarn --frozen-lockfile"
   },
   "dependencies": {
     "module-alias": "^2.2.3",
