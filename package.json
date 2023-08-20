@@ -30,7 +30,10 @@
     "start": "node ",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "lint": "eslint .",
-    "lint:fix": "yarn run lint -- --fix"
+    "lint:fix": "yarn run lint -- --fix",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "yarn run test -- --watch",
+    "test:coverage": "yarn run test -- --coverage"
   },
   "dependencies": {
     "module-alias": "^2.2.3",
