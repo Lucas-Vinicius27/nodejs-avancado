@@ -33,6 +33,7 @@
     "lint:fix": "yarn run lint -- --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn run test -- --watch",
+    "test:staged": "yarn run test -- --findRelatedTests",
     "test:coverage": "yarn run test -- --coverage"
   },
   "dependencies": {
