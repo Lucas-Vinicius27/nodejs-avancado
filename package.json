@@ -28,7 +28,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ",
-    "build": "rimraf dist && tsc"
+    "build": "rimraf dist && tsc -p tsconfig-build.json"
   },
   "dependencies": {
     "module-alias": "^2.2.3",
