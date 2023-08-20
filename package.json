@@ -35,7 +35,8 @@
     "test:watch": "yarn run test -- --watch",
     "test:staged": "yarn run test -- --findRelatedTests",
     "test:coverage": "yarn run test -- --coverage",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preci": "rm -rf node_modules"
   },
   "dependencies": {
     "module-alias": "^2.2.3",
