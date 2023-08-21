@@ -1,15 +1,14 @@
 # nodejs-avancado
 Curso de nodejs avançado com TDD, TypeScript, Clean Architecture, TypeORM e integração com APIs de terceiros.
 
-## comandos husky
+## dependências
+- node v18.x ou node lts
+- yarn v1.22.19
+- npm v9.8.1 ou maior
+
+## comandos
 Rodar os comandos no terminal:
 ```bash
-yarn run prepare
+#instalar as dependências do projeto
+yarn run ci
 ```
-```bash
-npx husky add .husky/pre-commit "npx lint-staged"
-```
-```bash
-npx husky add .husky/pre-push "yarn run test:coverage"
-```
-Apenas uma vez ao iniciar o projeto se não existir os arquivos.
