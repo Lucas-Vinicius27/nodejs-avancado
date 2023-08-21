@@ -29,7 +29,7 @@
   "scripts": {
     "start": "node ",
     "build": "rimraf dist && tsc -p tsconfig-build.json",
-    "lint": "eslint .",
+    "lint": "eslint **/*.ts",
     "lint:fix": "yarn run lint --fix",
     "test": "jest --passWithNoTests --no-cache --runInBand",
     "test:watch": "yarn run test --watch",
