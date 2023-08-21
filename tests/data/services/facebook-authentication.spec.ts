@@ -1,17 +1,6 @@
 import { type LoadFacebookUserApi } from '@/domain/data/contracts/apis'
+import { FacebookAuthenticationService } from '@/domain/data/services'
 import { AuthenticationError } from '@/domain/errors'
-import { type FacebookAuthentication } from '@/domain/feature'
-
-class FacebookAuthenticationService {
-  constructor (
-    private readonly loadFacebookUserApi: LoadFacebookUserApi
-  ) {}
-
-  async perform (params: FacebookAuthentication.Params): Promise<AuthenticationError> {
-    await this.loadFacebookUserApi.loadUser(params)
-    return new AuthenticationError()
-  }
-}
 
 class LoadFacebookUserApiSpy implements LoadFacebookUserApi {
   token?: string
