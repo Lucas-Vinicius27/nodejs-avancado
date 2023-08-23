@@ -30,6 +30,7 @@
         "schemas": "class",
         "typeorm": "database",
         "repositories": "mappings",
+        "repos": "mappings",
         "http": "container",
         "migrations": "tools",
         "websocket": "pipe",
