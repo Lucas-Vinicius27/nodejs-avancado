@@ -4,12 +4,17 @@ import { AuthenticationError } from '@/domain/errors'
 import { type LoadFacebookUserApi } from '@/domain/data/contracts/apis'
 import {
   type LoadUserAccountRepository,
-  type CreateFacebookAccountRepository
+  type CreateFacebookAccountRepository,
+  type UpdateFacebookAccountRepository
 } from '@/domain/data/contracts/repos'
 
 describe('FacebookAuthenticationService', () => {
   let facebookApi: MockProxy<LoadFacebookUserApi>
-  let userAccountRepo: MockProxy<LoadUserAccountRepository & CreateFacebookAccountRepository>
+  let userAccountRepo: MockProxy<
+  LoadUserAccountRepository &
+  CreateFacebookAccountRepository &
+  UpdateFacebookAccountRepository
+  >
   let sut: FacebookAuthenticationService
   const token = 'any_token'
   const userFacebook = {
@@ -56,5 +61,20 @@ describe('FacebookAuthenticationService', () => {
 
     expect(userAccountRepo.createFromFacebook).toHaveBeenCalledWith(userFacebook)
     expect(userAccountRepo.createFromFacebook).toHaveBeenCalledTimes(1)
+  })
+
+  it('should call UpdateFacebookAccountRepo when LoadUserAccountRepo returns data', async () => {
+    userAccountRepo.load.mockResolvedValueOnce({
+      id: 'any_id',
+      name: 'any_name'
+    })
+    await sut.perform({ token })
+
+    expect(userAccountRepo.updateWithFacebook).toHaveBeenCalledWith({
+      id: 'any_id',
+      name: 'any_name',
+      facebookId: userFacebook.facebookId
+    })
+    expect(userAccountRepo.updateWithFacebook).toHaveBeenCalledTimes(1)
   })
 })
