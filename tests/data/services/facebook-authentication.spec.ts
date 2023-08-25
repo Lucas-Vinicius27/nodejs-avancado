@@ -6,7 +6,7 @@ import {
   type LoadUserAccountRepository,
   type SaveFacebookAccountRepository
 } from '@/domain/data/contracts/repos'
-import { FacebookAccount } from '@/domain/models'
+import { AccessToken, FacebookAccount } from '@/domain/models'
 import { type TokenGenerator } from '@/domain/data/contracts/crypto'
 
 jest.mock('@/domain/models/facebook-account')
@@ -76,7 +76,10 @@ describe('FacebookAuthenticationService', () => {
   it('should call TokenGenerator with correct params', async () => {
     await sut.perform({ token })
 
-    expect(crypto.generateToken).toHaveBeenCalledWith({ key: account.id })
+    expect(crypto.generateToken).toHaveBeenCalledWith({
+      key: account.id,
+      expirationInMs: AccessToken.expirationInMs
+    })
     expect(crypto.generateToken).toHaveBeenCalledTimes(1)
   })
 })
