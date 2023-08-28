@@ -1,13 +1,13 @@
 import { mock, type MockProxy } from 'jest-mock-extended'
-import { FacebookAuthenticationService } from '@/domain/data/services'
+import { FacebookAuthenticationService } from '@/data/services'
 import { AuthenticationError } from '@/domain/errors'
-import { type LoadFacebookUserApi } from '@/domain/data/contracts/apis'
+import { type LoadFacebookUserApi } from '@/data/contracts/apis'
 import {
   type LoadUserAccountRepository,
   type SaveFacebookAccountRepository
-} from '@/domain/data/contracts/repos'
+} from '@/data/contracts/repos'
 import { AccessToken, FacebookAccount } from '@/domain/models'
-import { type TokenGenerator } from '@/domain/data/contracts/crypto'
+import { type TokenGenerator } from '@/data/contracts/crypto'
 
 jest.mock('@/domain/models/facebook-account')
 

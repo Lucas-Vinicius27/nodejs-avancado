@@ -1,4 +1,4 @@
-import { type LoadFacebookUserApi } from '@/domain/data/contracts/apis'
+import { type LoadFacebookUserApi } from '@/data/contracts/apis'
 import { type MockProxy, mock } from 'jest-mock-extended'
 
 export class FacebookApi {
