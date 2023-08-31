@@ -1,18 +1,7 @@
 import { DataType, newDb, type IMemoryDb, type IBackup } from 'pg-mem'
 import { getRepository, type Connection, type Repository, getConnection } from 'typeorm'
-import { type LoadUserAccountRepository } from '@/data/contracts/repos'
 import { PgUser } from '@/infra/postgres/entities'
-
-export class PgUserAccountRepository implements LoadUserAccountRepository {
-  async load (params: LoadUserAccountRepository.Params): Promise<LoadUserAccountRepository.Result> {
-    const pgUserRepo = getRepository(PgUser)
-    const pgUser = await pgUserRepo.findOne({ where: { email: params.email } })
-    if (pgUser !== undefined && pgUser !== null) {
-      return { id: pgUser.id.toString(), name: pgUser.name ?? undefined }
-    }
-    return undefined
-  }
-}
+import { PgUserAccountRepository } from '@/infra/postgres/repos'
 
 const makeFakeDb = async (entities?: any[]): Promise<IMemoryDb> => {
   const db = newDb()
