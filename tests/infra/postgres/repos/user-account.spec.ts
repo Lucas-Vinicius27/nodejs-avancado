@@ -45,12 +45,35 @@ describe('PgUserAccountRepository', () => {
     it('should create an account if id is undefined', async () => {
       await sut.saveWithFacebook({
         email: 'any_email',
-        facebookId: 'any_id',
-        name: 'any_fb_name'
+        facebookId: 'any_fb_id',
+        name: 'any_name'
       })
       const pgUser = await pgUserRepo.findOne({ where: { email: 'any_email' } })
 
       expect(pgUser?.id).toBe(1)
+    })
+
+    it('should update account if id is defined', async () => {
+      await pgUserRepo.save({
+        email: 'any_email',
+        facebookId: 'any_fb_id',
+        name: 'any_name'
+      })
+
+      await sut.saveWithFacebook({
+        id: '1',
+        email: 'new_email',
+        facebookId: 'new_fb_id',
+        name: 'new_name'
+      })
+      const pgUser = await pgUserRepo.findOne({ where: { id: 1 } })
+
+      expect(pgUser).toEqual({
+        id: 1,
+        email: 'any_email',
+        facebookId: 'new_fb_id',
+        name: 'new_name'
+      })
     })
   })
 })
