@@ -1,6 +1,7 @@
 import { DataType, newDb, type IMemoryDb, type IBackup } from 'pg-mem'
-import { Entity, PrimaryGeneratedColumn, Column, getRepository, type Connection, type Repository, getConnection } from 'typeorm'
+import { getRepository, type Connection, type Repository, getConnection } from 'typeorm'
 import { type LoadUserAccountRepository } from '@/data/contracts/repos'
+import { PgUser } from '@/infra/postgres/entities'
 
 export class PgUserAccountRepository implements LoadUserAccountRepository {
   async load (params: LoadUserAccountRepository.Params): Promise<LoadUserAccountRepository.Result> {
@@ -11,21 +12,6 @@ export class PgUserAccountRepository implements LoadUserAccountRepository {
     }
     return undefined
   }
-}
-
-@Entity({ name: 'usuarios' })
-export class PgUser {
-  @PrimaryGeneratedColumn()
-    id!: number
-
-  @Column({ name: 'nome', nullable: true })
-    name?: string
-
-  @Column()
-    email!: string
-
-  @Column({ name: 'id_facebook', nullable: true })
-    facebookId?: string
 }
 
 const makeFakeDb = async (entities?: any[]): Promise<IMemoryDb> => {
