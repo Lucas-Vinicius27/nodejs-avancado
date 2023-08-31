@@ -1,5 +1,5 @@
 import { DataType, newDb, type IMemoryDb, type IBackup } from 'pg-mem'
-import { Entity, PrimaryGeneratedColumn, Column, getRepository, type Connection, type Repository } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, getRepository, type Connection, type Repository, getConnection } from 'typeorm'
 import { type LoadUserAccountRepository } from '@/data/contracts/repos'
 
 export class PgUserAccountRepository implements LoadUserAccountRepository {
@@ -28,33 +28,37 @@ export class PgUser {
     facebookId?: string
 }
 
+const makeFakeDb = async (entities?: any[]): Promise<IMemoryDb> => {
+  const db = newDb()
+  db.public.registerFunction({
+    name: 'current_database',
+    args: [],
+    returns: DataType.text,
+    implementation: (x: any) => `hello world ${x}`
+  })
+  db.public.registerFunction({
+    name: 'version',
+    args: [],
+    returns: DataType.text,
+    implementation: (x: any) => `hello world ${x}`
+  })
+  const connection: Connection = await db.adapters.createTypeormConnection({
+    type: 'postgres',
+    entities: entities ?? ['src/infra/postgres/entities/index.ts']
+  })
+  await connection.synchronize()
+  return db
+}
+
 describe('PgUserAccountRepository', () => {
   describe('load', () => {
     let sut: PgUserAccountRepository
     let db: IMemoryDb
-    let connection: Connection
     let pgUserRepo: Repository<PgUser>
     let backup: IBackup
 
     beforeAll(async () => {
-      db = newDb()
-      db.public.registerFunction({
-        name: 'current_database',
-        args: [],
-        returns: DataType.text,
-        implementation: (x: any) => `hello world ${x}`
-      })
-      db.public.registerFunction({
-        name: 'version',
-        args: [],
-        returns: DataType.text,
-        implementation: (x: any) => `hello world ${x}`
-      })
-      connection = await db.adapters.createTypeormConnection({
-        type: 'postgres',
-        entities: [PgUser]
-      })
-      await connection.synchronize()
+      db = await makeFakeDb([PgUser])
       backup = db.backup()
       pgUserRepo = getRepository(PgUser)
     })
@@ -65,7 +69,7 @@ describe('PgUserAccountRepository', () => {
     })
 
     afterAll(async () => {
-      await connection.close()
+      await getConnection().close()
     })
 
     it('should return an account if email exists', async () => {
