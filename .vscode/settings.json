@@ -12,6 +12,8 @@
     "material-icon-theme.activeIconPack": "nest",
     "material-icon-theme.folders.associations": {
         "infra": "app",
+        "application": "app",
+        "main": "constant",
         "domain": "class",
         "modules": "components",
         "implementations": "core",
