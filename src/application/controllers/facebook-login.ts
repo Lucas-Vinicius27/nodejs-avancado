@@ -1,7 +1,7 @@
 import { type FacebookAuthentication } from '@/domain/feature'
 import { AccessToken } from '@/domain/models'
-import { type HttpResponse } from '@/application/helpers'
-import { ServerError } from '@/application/errors'
+import { badRequest, type HttpResponse } from '@/application/helpers'
+import { RequiredFieldError, ServerError } from '@/application/errors'
 
 export class FacebookLgoinController {
   constructor (private readonly facebookAuthentication: FacebookAuthentication) {}
@@ -13,10 +13,7 @@ export class FacebookLgoinController {
         httpRequest.token === null ||
         httpRequest.token === undefined
       ) {
-        return {
-          statusCode: 400,
-          data: new Error('The filed token is required')
-        }
+        return badRequest(new RequiredFieldError('token'))
       }
 
       const result = await this.facebookAuthentication.perform({ token: httpRequest.token })
