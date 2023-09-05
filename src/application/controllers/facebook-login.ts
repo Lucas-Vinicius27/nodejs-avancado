@@ -18,15 +18,11 @@ export class FacebookLgoinController {
     try {
       const error = this.validate(httpRequest)
 
-      if (error !== undefined) {
-        return badRequest(error)
-      }
+      if (error !== undefined) return badRequest(error)
 
       const accessToken = await this.facebookAuthentication.perform({ token: httpRequest.token })
 
-      if (accessToken instanceof AccessToken) {
-        return ok({ accessToken: accessToken.value })
-      }
+      if (accessToken instanceof AccessToken) return ok({ accessToken: accessToken.value })
 
       return unauthorized()
     } catch (error) {
@@ -39,8 +35,6 @@ export class FacebookLgoinController {
       httpRequest.token === '' ||
       httpRequest.token === null ||
       httpRequest.token === undefined
-    ) {
-      return new RequiredFieldError('token')
-    }
+    ) return new RequiredFieldError('token')
   }
 }
