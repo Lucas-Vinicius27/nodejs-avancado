@@ -1,6 +1,6 @@
 import { type FacebookAuthentication } from '@/domain/feature'
 import { AccessToken } from '@/domain/models'
-import { badRequest, type HttpResponse } from '@/application/helpers'
+import { badRequest, unauthorized, type HttpResponse } from '@/application/helpers'
 import { RequiredFieldError, ServerError } from '@/application/errors'
 
 export class FacebookLgoinController {
@@ -25,10 +25,7 @@ export class FacebookLgoinController {
         }
       }
 
-      return {
-        statusCode: 401,
-        data: result
-      }
+      return unauthorized()
     } catch (error) {
       return {
         statusCode: 500,
