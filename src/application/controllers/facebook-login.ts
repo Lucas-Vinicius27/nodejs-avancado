@@ -3,10 +3,14 @@ import { AccessToken } from '@/domain/models'
 import { badRequest, unauthorized, type HttpResponse, serverError, ok } from '@/application/helpers'
 import { RequiredFieldError } from '@/application/errors'
 
+type HttpRequest = {
+  token: string | undefined | null
+}
+
 export class FacebookLgoinController {
   constructor (private readonly facebookAuthentication: FacebookAuthentication) {}
 
-  async handle (httpRequest: any): Promise<HttpResponse> {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
       if (
         httpRequest.token === '' ||
