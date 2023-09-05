@@ -3,7 +3,7 @@ import { AuthenticationError } from '@/domain/errors'
 import { type FacebookAuthentication } from '@/domain/feature'
 import { AccessToken } from '@/domain/models'
 import { FacebookLgoinController } from '@/application/controllers'
-import { ServerError } from '@/application/errors'
+import { ServerError, UnauthorizedError } from '@/application/errors'
 
 describe('FacebookLgoinController', () => {
   let sut: FacebookLgoinController
@@ -58,7 +58,7 @@ describe('FacebookLgoinController', () => {
 
     expect(httpResponse).toEqual({
       statusCode: 401,
-      data: new AuthenticationError()
+      data: new UnauthorizedError()
     })
   })
 
