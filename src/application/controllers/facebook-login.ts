@@ -16,12 +16,12 @@ export class FacebookLgoinController {
         return badRequest(new RequiredFieldError('token'))
       }
 
-      const result = await this.facebookAuthentication.perform({ token: httpRequest.token })
+      const accessToken = await this.facebookAuthentication.perform({ token: httpRequest.token })
 
-      if (result instanceof AccessToken) {
+      if (accessToken instanceof AccessToken) {
         return {
           statusCode: 200,
-          data: { accessToken: result.value }
+          data: { accessToken: accessToken.value }
         }
       }
 
