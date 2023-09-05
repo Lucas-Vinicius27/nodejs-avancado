@@ -39,4 +39,12 @@ describe('RequiredStringValidator', () => {
 
     expect(error).toEqual(new RequiredFieldError('any_field_name'))
   })
+
+  it('should return undefined if value is not empty', () => {
+    const sut = new RequiredStringValidator('any_value', 'any_field_name')
+
+    const validate = sut.validate()
+
+    expect(validate).toBeUndefined()
+  })
 })
