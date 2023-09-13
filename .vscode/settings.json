@@ -42,6 +42,7 @@
     "traits": "test",
     // "feature": "test",
     "feature": "interface",
+    "features": "interface",
     "dbtest": "database",
     "storage": "database",
     "debugbar": "debug",
