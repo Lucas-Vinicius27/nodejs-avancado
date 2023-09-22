@@ -50,7 +50,8 @@
     "services": "server",
     "console": "core",
     "nginx": "server",
-    "deploy": "azure-pipelines"
+    "deploy": "azure-pipelines",
+    "swagger": "docs"
   },
   "material-icon-theme.files.associations": {
     "ormconfig.json": "database",
