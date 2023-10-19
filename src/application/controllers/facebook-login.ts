@@ -11,7 +11,7 @@ type Model = Error | {
   accessToken: string
 }
 
-export class FacebookLgoinController {
+export class FacebookLoginController {
   constructor (private readonly facebookAuthentication: FacebookAuthentication) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse<Model>> {

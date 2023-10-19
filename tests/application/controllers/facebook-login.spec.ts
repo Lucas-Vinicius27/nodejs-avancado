@@ -2,14 +2,14 @@ import { type MockProxy, mock } from 'jest-mock-extended'
 import { AuthenticationError } from '@/domain/errors'
 import { type FacebookAuthentication } from '@/domain/feature'
 import { AccessToken } from '@/domain/models'
-import { FacebookLgoinController } from '@/application/controllers'
+import { FacebookLoginController } from '@/application/controllers'
 import { ServerError, UnauthorizedError } from '@/application/errors'
 import { ValidationComposite, RequiredStringValidator } from '@/application/validation'
 
 jest.mock('@/application/validation/composite')
 
-describe('FacebookLgoinController', () => {
-  let sut: FacebookLgoinController
+describe('FacebookLoginController', () => {
+  let sut: FacebookLoginController
   let facebookAuth: MockProxy<FacebookAuthentication>
   let token: string
 
@@ -20,7 +20,7 @@ describe('FacebookLgoinController', () => {
   })
 
   beforeEach(() => {
-    sut = new FacebookLgoinController(facebookAuth)
+    sut = new FacebookLoginController(facebookAuth)
   })
 
   it('should return 400 if validation fails', async () => {
