@@ -63,7 +63,8 @@
     "*.graphql.infinity.ts": "graphql",
     "tsconfig.json": "tune",
     "*.proto": "3d",
-    "*.webpack.js": "webpack"
+    "*.webpack.js": "webpack",
+    "jest.integration.config.js": "jest"
   },
   "files.associations": {
     ".env*": "dotenv",
