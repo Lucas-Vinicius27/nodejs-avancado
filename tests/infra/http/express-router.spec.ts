@@ -2,18 +2,7 @@ import { type Response, type Request } from 'express'
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { type MockProxy, mock } from 'jest-mock-extended'
 import { type Controller } from '@/application/controllers'
-
-class ExpressRouter {
-  constructor (private readonly controller: Controller) {}
-  async adapt (req: Request, res: Response): Promise<void> {
-    const result = await this.controller.handle({ ...req.body })
-    if (result.statusCode === 200) {
-      res.status(result.statusCode).json(result.data)
-    } else {
-      res.status(result.statusCode).json({ error: result.data.message })
-    }
-  }
-}
+import { ExpressRouter } from '@/infra/http'
 
 describe('ExpressRouter', () => {
   let req: Request
