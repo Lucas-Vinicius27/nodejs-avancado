@@ -1,10 +1,10 @@
-import { type Response, type Request } from 'express'
+import { type RequestHandler } from 'express'
 import { type Controller } from '@/application/controllers'
 
-export class ExpressRouter {
-  constructor (private readonly controller: Controller) {}
-  async adapt (req: Request, res: Response): Promise<void> {
-    const result = await this.controller.handle({ ...req.body })
+export const adaptExpressRoute = (controller: Controller): RequestHandler => {
+  /* eslint @typescript-eslint/no-misused-promises: 0 */
+  return async (req, res) => {
+    const result = await controller.handle({ ...req.body })
     if (result.statusCode === 200) {
       res.status(result.statusCode).json(result.data)
     } else {
