@@ -27,6 +27,7 @@ describe('ExpressRouter', () => {
     await sut.adapt(req, res)
 
     expect(controller.handle).toHaveBeenCalledWith({ any: 'any' })
+    expect(controller.handle).toHaveBeenCalledTimes(1)
   })
 
   it('should call handle with empty request', async () => {
@@ -35,5 +36,6 @@ describe('ExpressRouter', () => {
     await sut.adapt(req, res)
 
     expect(controller.handle).toHaveBeenCalledWith({})
+    expect(controller.handle).toHaveBeenCalledTimes(1)
   })
 })
