@@ -6,7 +6,6 @@ export const env = {
   port: Number(process.env.PORT) ?? 8080,
   jwtSecret: String(process.env.JWT_SECRET) ?? 'dad656',
   dbConfig: {
-    type: String(process.env.DB_TYPE) ?? 'postgres',
     host: String(process.env.DB_HOST) ?? 'motty.db.elephantsql.com',
     port: Number(process.env.DB_PORT) ?? 5432,
     username: String(process.env.DB_USERNAME) ?? 'test',
