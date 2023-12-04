@@ -1,0 +1,9 @@
+{
+  "type": "postgres",
+  "host": "motty.db.elephantsql.com",
+  "port": 5432,
+  "username": "test",
+  "password": "test1234",
+  "database": "testDb",
+  "entities": ["dist/infra/postgres/entities/index.js"]
+}
