@@ -3,7 +3,7 @@ import { PgUser } from '@/infra/postgres/entities'
 import {
   type SaveFacebookAccountRepository,
   type LoadUserAccountRepository
-} from '@/data/contracts/repos'
+} from '@/domain/contracts/repos'
 
 type LoadParams = LoadUserAccountRepository.Params
 type LoadResult = LoadUserAccountRepository.Result
