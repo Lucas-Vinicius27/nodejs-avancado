@@ -1,5 +1,5 @@
 import { mock, type MockProxy } from 'jest-mock-extended'
-import { FacebookAuthenticationService } from '@/domain/services'
+import { FacebookAuthenticationService } from '@/domain/use-cases'
 import { AuthenticationError } from '@/domain/entities/errors'
 import { type LoadFacebookUserApi } from '@/domain/contracts/apis'
 import {
