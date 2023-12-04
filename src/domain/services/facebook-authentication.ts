@@ -4,8 +4,8 @@ import {
   type LoadUserAccountRepository,
   type SaveFacebookAccountRepository
 } from '@/domain/contracts/repos'
-import { AuthenticationError } from '@/domain/errors'
-import { AccessToken, FacebookAccount } from '@/domain/models'
+import { AuthenticationError } from '@/domain/entities/errors'
+import { AccessToken, FacebookAccount } from '@/domain/entities'
 import { type TokenGenerator } from '@/domain/contracts/crypto'
 
 export class FacebookAuthenticationService implements FacebookAuthentication {
