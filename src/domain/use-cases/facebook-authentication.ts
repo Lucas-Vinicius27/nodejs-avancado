@@ -1,4 +1,3 @@
-import { type FacebookAuthentication } from '@/domain/feature'
 import { type LoadFacebookUserApi } from '@/domain/contracts/apis'
 import {
   type LoadUserAccountRepository,
@@ -8,29 +7,32 @@ import { AuthenticationError } from '@/domain/entities/errors'
 import { AccessToken, FacebookAccount } from '@/domain/entities'
 import { type TokenGenerator } from '@/domain/contracts/crypto'
 
-export class FacebookAuthenticationUseCase implements FacebookAuthentication {
-  constructor (
-    private readonly facebookApi: LoadFacebookUserApi,
-    private readonly userAccountRepo: LoadUserAccountRepository &
-    SaveFacebookAccountRepository,
-    private readonly crypto: TokenGenerator
-  ) {}
+export type FacebookAuthentication = (params: { token: string }) => Promise<AccessToken | AuthenticationError>
 
-  async perform (params: FacebookAuthentication.Params): Promise<FacebookAuthentication.Result> {
-    const fbData = await this.facebookApi.loadUser(params)
+type Setup = (
+  facebookApi: LoadFacebookUserApi,
+  userAccountRepo: LoadUserAccountRepository & SaveFacebookAccountRepository,
+  crypto: TokenGenerator
+) => FacebookAuthentication
 
-    if (fbData !== undefined) {
-      const accountData = await this.userAccountRepo.load({ email: fbData.email })
-      const fbAccount = new FacebookAccount(fbData, accountData)
-      const { id } = await this.userAccountRepo.saveWithFacebook(fbAccount)
-      const token = await this.crypto.generateToken({
-        key: id,
-        expirationInMs: AccessToken.expirationInMs
-      })
+export const setupFacebookAuthentication: Setup = (
+  facebookApi,
+  userAccountRepo,
+  crypto
+) => async params => {
+  const fbData = await facebookApi.loadUser(params)
 
-      return new AccessToken(token)
-    }
+  if (fbData !== undefined) {
+    const accountData = await userAccountRepo.load({ email: fbData.email })
+    const fbAccount = new FacebookAccount(fbData, accountData)
+    const { id } = await userAccountRepo.saveWithFacebook(fbAccount)
+    const token = await crypto.generateToken({
+      key: id,
+      expirationInMs: AccessToken.expirationInMs
+    })
 
-    return new AuthenticationError()
+    return new AccessToken(token)
   }
+
+  return new AuthenticationError()
 }
