@@ -3,8 +3,8 @@
   "workbench.iconTheme": "material-icon-theme",
   "editor.suggestSelection": "first",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.prettier": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.prettier": "explicit"
   },
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontLigatures": true,
