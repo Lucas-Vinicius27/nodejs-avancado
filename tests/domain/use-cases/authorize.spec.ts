@@ -1,13 +1,5 @@
 import { mock, type MockProxy } from 'jest-mock-extended'
-
-export interface TokenValidator {
-  validateToken: (params: TokenValidator.Params) => Promise<TokenValidator.Result>
-}
-
-export namespace TokenValidator {
-  export type Params = { token: string }
-  export type Result = string
-}
+import { type TokenValidator } from '@/domain/contracts/crypto'
 
 type Input = { token: string }
 type Output = string
