@@ -7,10 +7,14 @@ describe('JwtTokenHandler', () => {
   let sut: JwtTokenHandler
   let fakeJwt: jest.Mocked<typeof jwt>
   let secret: string
+  let key: string
+  let token: string
 
   beforeAll(() => {
     fakeJwt = jwt as jest.Mocked<typeof jwt>
     secret = 'any_secret'
+    key = 'any_key'
+    token = 'any_token'
   })
 
   beforeEach(() => {
@@ -18,14 +22,10 @@ describe('JwtTokenHandler', () => {
   })
 
   describe('generateToken', () => {
-    let key: string
-    let token: string
     let expirationInMs: number
 
     beforeAll(() => {
-      token = 'any_token'
       fakeJwt.sign.mockImplementation(() => token)
-      key = 'any_key'
       expirationInMs = 1000
     })
 
@@ -56,12 +56,7 @@ describe('JwtTokenHandler', () => {
   })
 
   describe('validateToken', () => {
-    let token: string
-    let key: string
-
     beforeAll(() => {
-      token = 'any_token'
-      key = 'any_key'
       fakeJwt.verify.mockImplementation(() => ({ key }))
     })
 
