@@ -10,7 +10,6 @@ describe('JwtTokenHandler', () => {
 
   beforeAll(() => {
     fakeJwt = jwt as jest.Mocked<typeof jwt>
-    fakeJwt.sign.mockImplementation(() => 'any_token')
     secret = 'any_secret'
   })
 
@@ -19,6 +18,10 @@ describe('JwtTokenHandler', () => {
   })
 
   describe('generateToken', () => {
+    beforeAll(() => {
+      fakeJwt.sign.mockImplementation(() => 'any_token')
+    })
+
     it('should call sign with correct params', async () => {
       await sut.generateToken({ key: 'any_key', expirationInMs: 1000 })
 
