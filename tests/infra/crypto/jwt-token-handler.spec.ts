@@ -18,15 +18,22 @@ describe('JwtTokenHandler', () => {
   })
 
   describe('generateToken', () => {
+    let key: string
+    let token: string
+    let expirationInMs: number
+
     beforeAll(() => {
-      fakeJwt.sign.mockImplementation(() => 'any_token')
+      token = 'any_token'
+      fakeJwt.sign.mockImplementation(() => token)
+      key = 'any_key'
+      expirationInMs = 1000
     })
 
     it('should call sign with correct params', async () => {
-      await sut.generateToken({ key: 'any_key', expirationInMs: 1000 })
+      await sut.generateToken({ key, expirationInMs })
 
       expect(fakeJwt.sign).toHaveBeenCalledWith(
-        { key: 'any_key' },
+        { key },
         secret,
         { expiresIn: 1 }
       )
@@ -34,15 +41,15 @@ describe('JwtTokenHandler', () => {
     })
 
     it('should return a token', async () => {
-      const token = await sut.generateToken({ key: 'any_key', expirationInMs: 1000 })
+      const generatedToken = await sut.generateToken({ key, expirationInMs })
 
-      expect(token).toBe('any_token')
+      expect(generatedToken).toBe(token)
     })
 
     it('should rethrow if sign throws', async () => {
       fakeJwt.sign.mockImplementationOnce(() => { throw new Error('token_error') })
 
-      const promise = sut.generateToken({ key: 'any_key', expirationInMs: 1000 })
+      const promise = sut.generateToken({ key, expirationInMs })
 
       await expect(promise).rejects.toThrow(new Error('token_error'))
     })
