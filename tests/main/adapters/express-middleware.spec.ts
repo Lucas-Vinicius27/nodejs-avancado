@@ -1,4 +1,4 @@
-import { type HttpResponse } from '@/application/helpers'
+import { type Middleware } from '@/application/middlewares'
 import { getMockReq, getMockRes } from '@jest-mock/express'
 import { type Response, type Request, type RequestHandler, type NextFunction } from 'express'
 import { type MockProxy, mock } from 'jest-mock-extended'
@@ -14,10 +14,6 @@ export const adaptExpressMiddleware: Adapter = middleware => async (req, res, ne
   } else {
     res.status(statusCode).json(data)
   }
-}
-
-export interface Middleware {
-  handle: (httpRequest: any) => Promise<HttpResponse>
 }
 
 describe('ExpressMiddleware', () => {
