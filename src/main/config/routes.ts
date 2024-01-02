@@ -1,7 +1,7 @@
 import { type Express, Router } from 'express'
 import { readdirSync } from 'fs'
 import { join } from 'path'
-
+/* eslint @typescript-eslint/no-floating-promises: 0 */
 export const setupRoutes = (app: Express): void => {
   const router = Router()
   router.get('/', (req, res) => { res.send({ data: 'API is running!' }) })
